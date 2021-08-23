@@ -6,6 +6,7 @@ import Header from "../../components/header"
 import Home from "../home/home"
 import Product from "../product/product";
 import Category from "../category/category"
+import Breads from "../../components/header/breads"
 import Role from "../role/role"
 import User from "../user/user";
 import {Route, Switch, Redirect} from "react-router-dom";
@@ -28,6 +29,7 @@ export default class Admin extends Component {
             <Header>
               header
             </Header>
+            {/*<Breads />*/}
             <Content style={{backgroundColor:'white',margin:'20px 20px 0'}}>
               <Switch>
                 <Route path='/home' component={Home}/>

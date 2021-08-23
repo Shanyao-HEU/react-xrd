@@ -1,15 +1,28 @@
 import React, {Component} from "react"
 import {Link, withRouter} from 'react-router-dom'
-import {Menu} from 'antd'
+import {Button, Menu} from 'antd'
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+} from '@ant-design/icons';
 
-
-import logo from './logo.png'
+import logo from './2.png'
 import './left-nav.less'
 import menuConfig from "../../config/menuConfig";
 
 const SubMenu = Menu.SubMenu
 
 class LeftNav extends Component {
+
+  state = {
+    collapsed: false,
+  }
+
+  toggleCollapsed = () => {
+    this.setState({
+      collapsed: !this.state.collapsed
+    })
+  }
 
   getMenuNodes = (menuList) => {
 
@@ -61,14 +74,18 @@ class LeftNav extends Component {
       <div className="left-nav">
         <Link to='/home' className='logo-link'>
           <img src={logo} alt="logo" />
-          <h1>硅谷后台</h1>
         </Link>
+
+        <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
+          {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
+        </Button>
 
         <Menu
           mode="inline"
           theme="dark"
           selectedKeys={[selectKey]}
           defaultOpenKeys={[openKey]}
+          inlineCollapsed={this.state.collapsed}
         >
           {
             this.menuNodes
