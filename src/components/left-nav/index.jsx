@@ -14,15 +14,6 @@ const SubMenu = Menu.SubMenu
 
 class LeftNav extends Component {
 
-  state = {
-    collapsed: false,
-  }
-
-  toggleCollapsed = () => {
-    this.setState({
-      collapsed: !this.state.collapsed
-    })
-  }
 
   getMenuNodes = (menuList) => {
 
@@ -75,17 +66,11 @@ class LeftNav extends Component {
         <Link to='/home' className='logo-link'>
           <img src={logo} alt="logo" />
         </Link>
-
-        <Button type="primary" onClick={this.toggleCollapsed} style={{ marginBottom: 16 }}>
-          {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
-        </Button>
-
         <Menu
           mode="inline"
           theme="dark"
           selectedKeys={[selectKey]}
           defaultOpenKeys={[openKey]}
-          inlineCollapsed={this.state.collapsed}
         >
           {
             this.menuNodes

@@ -1,5 +1,9 @@
 import React, {Component} from "react"
-import { Layout } from 'antd';
+import { Layout, Button } from 'antd';
+import {
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+} from '@ant-design/icons'
 
 import LeftNav from "../../components/left-nav";
 import Header from "../../components/header"
@@ -16,19 +20,35 @@ const { Footer, Sider, Content } = Layout;
 
 export default class Admin extends Component {
 
+  state = {
+    collapsed: false
+  }
+
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+    console.log("state", this.state)
+  };
+
   render() {
     return (
       <div style={{height:'100%'}}>
         <Layout
           className='lay1'
           style={{height: '100%'}}>
-          <Sider>
+          <Sider collapsible collapsed={this.state.collapsed}>
             <LeftNav />
           </Sider>
           <Layout>
-            <Header>
-              header
-            </Header>
+          <span>
+            <Button
+              onClick={this.toggle}
+              style={{float:"left",marginBottom:10,zIndex:99}}>
+              {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
+            </Button>
+          </span>
+            <Header />
             {/*<Breads />*/}
             <Content style={{backgroundColor:'white',margin:'20px 20px 0'}}>
               <Switch>
